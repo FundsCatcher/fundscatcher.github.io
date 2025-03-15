@@ -27,6 +27,7 @@
             margin: 0;
             padding: 20px;
             transition: background 0.3s, color 0.3s;
+            position: relative;
         }
         h1 {
             cursor: pointer;
@@ -64,19 +65,24 @@
         .rolling {
             transform: rotate(360deg);
         }
+
+        /* 🔥 Smaller Dark Mode Toggle */
         .dark-mode-toggle {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 10px;
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            background: none;
+            border: none;
+            font-size: 25px;
             cursor: pointer;
-            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
 
     <h1 id="title" contenteditable="true">Digital Dice Roller</h1>
     <label for="rangeMin">Min:</label>
