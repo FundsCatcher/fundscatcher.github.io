@@ -5,29 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Dice Roller</title>
     <style>
+        :root {
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --box-bg: #fff;
+            --border-color: #333;
+        }
+
+        body.dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #f4f4f4;
+            --box-bg: #333;
+            --border-color: #f4f4f4;
+        }
+
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #f4f4f4;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
             padding: 20px;
+            transition: background 0.3s, color 0.3s;
         }
         h1 {
-            color: #333;
+            cursor: pointer;
         }
         input, button {
             margin: 10px;
             padding: 10px;
             font-size: 16px;
+            border: 1px solid var(--border-color);
+            background-color: var(--box-bg);
+            color: var(--text-color);
+            transition: 0.3s;
+        }
+        button {
+            cursor: pointer;
         }
         #roller {
             font-size: 80px;
             font-weight: bold;
             margin: 20px;
             padding: 20px;
-            border: 3px solid #333;
+            border: 3px solid var(--border-color);
             display: inline-block;
-            background-color: #fff;
+            background-color: var(--box-bg);
             width: 120px;
             height: 120px;
             line-height: 120px;
@@ -41,9 +64,19 @@
         .rolling {
             transform: rotate(360deg);
         }
+        .dark-mode-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
+
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
 
     <h1 id="title" contenteditable="true">Digital Dice Roller</h1>
     <label for="rangeMin">Min:</label>
@@ -59,9 +92,37 @@
     <h3>Rolled Numbers:</h3>
     <p id="rolledNumbers"></p>
 
+    <audio id="diceSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+
     <script>
         let availableNumbers = [];
         let rolledNumbers = [];
+
+        function loadGameState() {
+            const savedAvailable = localStorage.getItem("availableNumbers");
+            const savedRolled = localStorage.getItem("rolledNumbers");
+            const savedTheme = localStorage.getItem("darkMode");
+
+            if (savedAvailable && savedRolled) {
+                availableNumbers = JSON.parse(savedAvailable);
+                rolledNumbers = JSON.parse(savedRolled);
+                document.getElementById("rolledNumbers").innerText = rolledNumbers.join(", ");
+                if (rolledNumbers.length > 0) {
+                    document.getElementById("roller").innerText = rolledNumbers[rolledNumbers.length - 1];
+                }
+            } else {
+                resetGame();
+            }
+
+            if (savedTheme === "enabled") {
+                document.body.classList.add("dark-mode");
+            }
+        }
+
+        function saveGameState() {
+            localStorage.setItem("availableNumbers", JSON.stringify(availableNumbers));
+            localStorage.setItem("rolledNumbers", JSON.stringify(rolledNumbers));
+        }
 
         function resetGame() {
             let min = parseInt(document.getElementById("rangeMin").value);
@@ -76,6 +137,8 @@
             rolledNumbers = [];
             document.getElementById("rolledNumbers").innerText = "";
             document.getElementById("roller").innerText = "🎲";
+
+            saveGameState();
         }
 
         function rollDice() {
@@ -90,6 +153,9 @@
             rolledNumbers.push(rolledNumber);
             document.getElementById("roller").innerText = rolledNumber;
 
+            // Play sound
+            document.getElementById("diceSound").play();
+
             // Animation effect
             let roller = document.getElementById("roller");
             roller.classList.add("rolling");
@@ -98,10 +164,18 @@
             }, 300);
 
             document.getElementById("rolledNumbers").innerText = rolledNumbers.join(", ");
+
+            saveGameState();
         }
 
-        // Initialize game on load
-        resetGame();
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            let darkModeEnabled = document.body.classList.contains("dark-mode") ? "enabled" : "disabled";
+            localStorage.setItem("darkMode", darkModeEnabled);
+        }
+
+        // Load game state when the page loads
+        loadGameState();
     </script>
 
 </body>
