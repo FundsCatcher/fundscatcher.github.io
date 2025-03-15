@@ -101,7 +101,14 @@
         function loadGameState() {
             const savedAvailable = localStorage.getItem("availableNumbers");
             const savedRolled = localStorage.getItem("rolledNumbers");
+            const savedMin = localStorage.getItem("rangeMin");
+            const savedMax = localStorage.getItem("rangeMax");
             const savedTheme = localStorage.getItem("darkMode");
+
+            if (savedMin && savedMax) {
+                document.getElementById("rangeMin").value = savedMin;
+                document.getElementById("rangeMax").value = savedMax;
+            }
 
             if (savedAvailable && savedRolled) {
                 availableNumbers = JSON.parse(savedAvailable);
@@ -122,6 +129,8 @@
         function saveGameState() {
             localStorage.setItem("availableNumbers", JSON.stringify(availableNumbers));
             localStorage.setItem("rolledNumbers", JSON.stringify(rolledNumbers));
+            localStorage.setItem("rangeMin", document.getElementById("rangeMin").value);
+            localStorage.setItem("rangeMax", document.getElementById("rangeMax").value);
         }
 
         function resetGame() {
