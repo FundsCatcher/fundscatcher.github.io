@@ -17,12 +17,14 @@ This page serves as a central gateway where visitors can explore specific worksp
 
 ## 📁 Repository Structure
 
-```text
-fundscatcher.github.io/
-├── index.html               # Landing page with project links
-├── lumrodpro.github.io/     # Portfolio project (hosted as a subproject)
-├── dice_roller.html         # Standalone web app
-└── README.md                # You're here!
+| Path / File                                                                   | Description                                            |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------ |
+| [`index.html`](./index.html)                                                  | 🌐 Landing page with project previews and links        |
+| [`lumrodpro.github.io/`](https://fundscatcher.github.io/lumrodpro.github.io/) | 🧠 Portfolio project (hosted as a subproject)          |
+| [`dice_roller.html`](./dice_roller.html)                                      | 🎲 Standalone JavaScript web app (digital dice roller) |
+| `README.md`                                                                   | 📘 You're here!                                        |
+
+
 ---
 
 ## 🛠 Tech Stack
