@@ -16,11 +16,13 @@ This page serves as a central gateway where visitors can explore specific worksp
 ---
 
 ## 📁 Repository Structure
-├── index.html # Landing page with project links
-├── lumrodpro.github.io # Portfolio project (hosted as a subproject)
-├── dice_roller.html # Standalone web app
-└── README.md # You're here!
 
+```text
+fundscatcher.github.io/
+├── index.html               # Landing page with project links
+├── lumrodpro.github.io/     # Portfolio project (hosted as a subproject)
+├── dice_roller.html         # Standalone web app
+└── README.md                # You're here!
 ---
 
 ## 🛠 Tech Stack
