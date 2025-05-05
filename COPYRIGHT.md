@@ -1,0 +1,17 @@
+# © Copyright Statement
+
+**Project Name:** FundsCatcher Projects  
+**Author:** Lumier Rodriguez  
+**Year:** 2025  
+**License:** All Rights Reserved
+
+This repository and its contents (HTML, CSS, JavaScript, images, and documentation) are the intellectual property of Lumier Rodriguez unless otherwise specified.
+
+## Permissions
+
+- ✅ Viewing and sharing this site for educational or professional reference is allowed
+- ❌ Reproducing, redistributing, or reusing the code or designs without written permission is not allowed
+
+If you wish to use parts of this project for your own portfolio or learning, feel free to reach out first.
+
+📬 Contact: [rodriguez.lumier@gmail.com](mailto:rodriguez.lumier@gmail.com)
